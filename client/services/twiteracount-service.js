@@ -90,7 +90,7 @@ let twiterAccountService = {
         if (passWord) update.passWord = passWord
         if (twoFa) update.twoFa = twoFa
         if (status) update.status = status
-        if (typeProxy) update.typeProxy = typeProxy
+        if (typeProxy!=null) update.typeProxy = typeProxy
         if (proxy) update.proxy = proxy
         if (keyGpt) update.keyGpt = keyGpt
 
