@@ -66,13 +66,12 @@ let twiterAccountService = {
         const twoFa = req.body.twoFa
         const cookie = req.body.cookie
         const status = req.body.status
-        let typeProxy = req.body.typeProxy
-        let proxy = req.body.proxy
+        const typeProxy = req.body.typeProxy
+        const proxy = req.body.proxy
         const keyGpt = req.body.keyGpt
 
         const user = await Users.findOne({ keyPc: keyPc })
-        if (typeProxy == "") typeProxy = 0
-        if (proxy == "") typeProxy = 0
+    
         if (!user) {
           return reject(new Error("tài khoản không đúng!"))
         }
@@ -92,7 +91,7 @@ let twiterAccountService = {
         if (twoFa) update.twoFa = twoFa
         if (status) update.status = status
         if (typeProxy) update.typeProxy = typeProxy
-        if (proxy != null) update.proxy = proxy
+        if (proxy) update.proxy = proxy
         if (keyGpt) update.keyGpt = keyGpt
 
         const response = await AccountTwiter.findOneAndUpdate({ _id: account._id }, update, { new: true })
