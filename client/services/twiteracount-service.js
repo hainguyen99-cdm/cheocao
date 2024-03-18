@@ -26,7 +26,7 @@ let twiterAccountService = {
         const proxy = req.body.proxy
         const keyGpt = req.body.keyGpt
         const status = "unknow"
-
+        const action = req.body.action
         const filter = { 'keyPc': keyPc }
         const user = await Users.findOne(filter, { createdAt: 0, updatedAt: 0, __v: 0 })
         if (user._id == null) {
@@ -47,7 +47,8 @@ let twiterAccountService = {
           typeProxy: typeProxy,
           proxy: proxy,
           keyGpt:keyGpt,
-          status:status
+          status:status,
+          action:action
         }).save()
         return resolve(true)
       } catch (e) {
@@ -69,6 +70,7 @@ let twiterAccountService = {
         const typeProxy = req.body.typeProxy
         const proxy = req.body.proxy
         const keyGpt = req.body.keyGpt
+        const action = req.body.action
 
         const user = await Users.findOne({ keyPc: keyPc })
     
@@ -93,6 +95,7 @@ let twiterAccountService = {
         if (typeProxy!="") update.typeProxy = typeProxy
         if (proxy) update.proxy = proxy
         if (keyGpt) update.keyGpt = keyGpt
+        if (action) update.action = action
 
         const response = await AccountTwiter.findOneAndUpdate({ _id: account._id }, update, { new: true })
         resolve(response)
@@ -188,7 +191,7 @@ let twiterAccountService = {
             
               for (const element of response) {
                 if(element.idUser!=user._id){
-                await Users.findOne({ _id: element.idUser }, async (err, data) => {
+                await Users.findOne({ _id: element.idUser,action: "true" }, async (err, data) => {
                   if (err) {
                     return reject(err)
                   } else {

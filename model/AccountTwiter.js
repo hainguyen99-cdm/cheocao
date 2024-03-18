@@ -12,6 +12,7 @@ let AccountTwiterSchema = new mongoose.Schema({
   proxy: {type: String, required: false},
   keyGpt: {type: String, required: false},
   status: {type: String, required: false},
+  action:{type: String, required: false},
 
 }, {timestamps: true})
 
