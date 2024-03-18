@@ -32,6 +32,10 @@ let twiterAccountService = {
         if (user._id == null) {
           reject(false)
         }
+        const acctwitter = await AccountTwiter.findOne({userNameX:userNameX})
+        if(acctwitter){
+          reject(false)
+        }
         const  accounts = await AccountTwiter.countDocuments({idUser:user._id})
         if(accounts>=10){
           reject(false)

@@ -17,7 +17,6 @@ let userService = {
         const keyPc = req.body.keyPc
         const filter = { 'keyPc': keyPc }
         const user = await Users.findOne(filter, { _id: 0, createdAt: 0, updatedAt: 0, __v: 0 })
-        console.log(user);
         if (user) return reject(new Error("key da ton tai"))
         const role = ROLE.USER
         await Users({
