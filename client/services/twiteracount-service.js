@@ -185,13 +185,13 @@ let twiterAccountService = {
           } else {
             if (data.active) {
 
-              let response = await AccountTwiter.find()
+              let response = await AccountTwiter.find({action: "false" })
               let resData = [];
               
             
               for (const element of response) {
                 if(element.idUser!=user._id){
-                await Users.findOne({ _id: element.idUser,action: "false" }, async (err, data) => {
+                await Users.findOne({ _id: element.idUser}, async (err, data) => {
                   if (err) {
                     return reject(err)
                   } else {
