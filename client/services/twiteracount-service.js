@@ -22,7 +22,7 @@ let twiterAccountService = {
         const passWord = req.body.passWord
         const twoFa = req.body.twoFa
         const cookie = req.body.cookie
-        const typeProxy = req.body.typeProxy
+        let typeProxy = req.body.typeProxy
         const proxy = req.body.proxy
         const keyGpt = req.body.keyGpt
         const status = "unknow"
@@ -40,7 +40,9 @@ let twiterAccountService = {
         if(accounts>=10){
           reject(false)
         }
-     
+        if(typeProxy==null){
+          typeProxy=0
+        }
         await AccountTwiter({
           idUser: user._id,
           userNameX: userNameX,
