@@ -26,7 +26,7 @@ let twiterAccountService = {
         const proxy = req.body.proxy
         const keyGpt = req.body.keyGpt
         const status = "unknow"
-        const action = req.body.action
+        let action = req.body.action
         const filter = { 'keyPc': keyPc }
         
         const user = await Users.findOne(filter, { createdAt: 0, updatedAt: 0, __v: 0 })
@@ -41,7 +41,7 @@ let twiterAccountService = {
         if(accounts>=10){
           reject(false)
         }
-        if(typeProxy==null){
+        if(typeProxy==""){
           typeProxy=0
         }
         if(action==null){
