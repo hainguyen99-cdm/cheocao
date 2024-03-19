@@ -28,6 +28,7 @@ let twiterAccountService = {
         const status = "unknow"
         const action = req.body.action
         const filter = { 'keyPc': keyPc }
+        
         const user = await Users.findOne(filter, { createdAt: 0, updatedAt: 0, __v: 0 })
         if (user._id == null) {
           reject(false)
@@ -42,6 +43,9 @@ let twiterAccountService = {
         }
         if(typeProxy==null){
           typeProxy=0
+        }
+        if(action==null){
+          action="true"
         }
         await AccountTwiter({
           idUser: user._id,
